@@ -11,7 +11,7 @@ overwatch_declare_variable()
 	game_func_cur := 0 ; 当前快捷键想要执行的功能编号
 }
 
-ChangeGameFunc(){ ; 切换功能编号
+ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 	global
 	
 	if (game_func_cur < game_func_max) 
@@ -32,51 +32,63 @@ ChangeGameFunc(){ ; 切换功能编号
 		Case 5:
 			operation := ["毛妹", "盾+大招", 100, 100, "{LShift}", 100, "q"]
 		Case 6:
-			operation := ["安娜", "睡针药瓶", 100, 100, "{LShift}", 100, "e"]
+			operation := ["安娜", "睡针药瓶", 100, 100, "{LShift}", 200, "e"]
 		Default:
-			operation := ["英雄名称", "效果描述", 重复次数, 间隔时间, "按键"]
+			operation := ["英雄名称", "效果描述", 重复间隔, 按键间隔, "按键"]
 	}
 	
 	SoundBeep, game_func_cur*100, 300
-	TrayTip OverWatch, % "【" operation[1] "】  " operation[2] "  " operation[3] " 次", 1
+	TrayTip OverWatch, % "【" operation[1] "】  " operation[2] "  间隔 " operation[3] " ms", 1
 }
 
-ExecuteGameFunc(){ ; 这个傻逼语言，把我逼到这个份上，也是绝了
+ExecuteOperation(){ ; 这个傻逼语言，把我逼到这个份上，也是绝了
 	global
-	
-	Loop % operation[3]
+	if(operation.length() > 4)
 	{
-		if(operation.length() > 4)
-		{
-			delay := operation[4]
-			char := operation[5]
-			
-			Sleep, %delay%
-			Send %char%
-		}
-		if(operation.length() > 6)
-		{
-			delay := operation[6]
-			char := operation[7]
-			
-			Sleep, %delay%
-			Send %char%
-		}
-		if(operation.length() > 8)
-		{
-			delay := operation[8]
-			char := operation[9]
-			
-			Sleep, %delay%
-			Send %char%
-		}
-		if(operation.length() > 10)
-		{
-			delay := operation[10]
-			char := operation[11]
-			
-			Sleep, %delay%
-			Send %char%
-		}
+		delay := operation[4]
+		char := operation[5]
+		
+		Sleep, %delay%
+		Send %char%
 	}
+	if(operation.length() > 6)
+	{
+		delay := operation[6]
+		char := operation[7]
+		
+		Sleep, %delay%
+		Send %char%
+	}
+	if(operation.length() > 8)
+	{
+		delay := operation[8]
+		char := operation[9]
+		
+		Sleep, %delay%
+		Send %char%
+	}
+	if(operation.length() > 10)
+	{
+		delay := operation[10]
+		char := operation[11]
+		
+		Sleep, %delay%
+		Send %char%
+	}
+}
+
+ToggleTimer(){
+	global
+	gap := operation[3]
+	Toggle := !Toggle
+	
+	If Toggle
+		SetTimer , TheLoop2 , %gap% ; This is 200 ms
+	Else
+		SetTimer , TheLoop2 , Off
+	Return
+
+	TheLoop2:
+		ExecuteOperation()
+	Return
 }

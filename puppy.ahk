@@ -40,24 +40,18 @@ test_declare_variable()
 ; ------- 工作相关区域
 ; --------------------------------------------------------------------------------------
 
-^!C::
-if WinActive("ahk_exe webstorm64.exe") or WinActive("ahk_exe pycharm64.exe")
-	SeleteColumns()
-return
+#IfWinActive, ahk_class SunAwtFrame
+^!C::SeleteColumns()
+#IfWinActive
 
 ; --------------------------------------------------------------------------------------
 ; ------- 游戏相关区域
 ; --------------------------------------------------------------------------------------
 
-F4::
-if WinActive("ahk_exe Overwatch.exe")
-	ChangeGameFunc()
-return
-
-R::
-if WinActive("ahk_exe Overwatch.exe")
-	ExecuteGameFunc()
-return
+#IfWinActive, ahk_exe Overwatch.exe
+F4::ChangeGameFunc()
+R::ToggleTimer()
+#IfWinActive
 
 ; --------------------------------------------------------------------------------------
 ; ------- 测试相关区域
