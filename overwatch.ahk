@@ -41,7 +41,7 @@ ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 	TrayTip OverWatch, % "【" operation[1] "】  " operation[2] "  间隔 " operation[3] " ms", 1
 }
 
-ExecuteOperation(){ ; 这个傻逼语言，把我逼到这个份上，也是绝了
+ExecuteOperation(){ ; 执行一次操作命令，把数组里的按键按照间隔全部按一遍 ; 这个傻逼语言，把我逼到这个份上，也是绝了
 	global
 	if(operation.length() > 4)
 	{
@@ -77,7 +77,7 @@ ExecuteOperation(){ ; 这个傻逼语言，把我逼到这个份上，也是绝�
 	}
 }
 
-ToggleTimer(){
+ToggleTimer(){ ; 开关无限循环连点器
 	global
 	gap := operation[3]
 	Toggle := !Toggle

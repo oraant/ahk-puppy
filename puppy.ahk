@@ -41,7 +41,7 @@ test_declare_variable()
 ; --------------------------------------------------------------------------------------
 
 #IfWinActive, ahk_class SunAwtFrame
-^!C::SeleteColumns()
+	^!C::SeleteColumns() ; 用在 pycharm 或 webstorm 中，折叠内容后批量选择某列
 #IfWinActive
 
 ; --------------------------------------------------------------------------------------
@@ -49,8 +49,8 @@ test_declare_variable()
 ; --------------------------------------------------------------------------------------
 
 #IfWinActive, ahk_exe Overwatch.exe
-F4::ChangeGameFunc()
-R::ToggleTimer()
+	F4::ChangeGameFunc() ; 选择要循环执行的操作
+	R::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
 
 ; --------------------------------------------------------------------------------------
