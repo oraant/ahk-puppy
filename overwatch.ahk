@@ -11,6 +11,16 @@ overwatch_declare_variable()
 	game_func_cur := 0 ; 当前快捷键想要执行的功能编号
 }
 
+PrintCurrent(){ ; 打印当前的内容
+	global
+	ToolTip, % "【" operation[1] "】 " operation[2] " , " operation[3] "ms", 0, 0
+	SoundBeep, 300, 300
+}
+
+; ------------------------------------------------------------------------------------------------------------------
+; ------------------ 循环列表与单独指定
+; ------------------------------------------------------------------------------------------------------------------
+
 ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 	global
 	
@@ -37,9 +47,50 @@ ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 			operation := ["英雄名称", "效果描述", 重复间隔, 按键间隔, "按键"]
 	}
 	
-	SoundBeep, game_func_cur*100, 300
-	TrayTip OverWatch, % "【" operation[1] "】  " operation[2] "  间隔 " operation[3] " ms", 1
+	PrintCurrent()
 }
+
+
+SimpleLoopQ(){
+	global
+	operation := ["通用", "Q", 100, 100, "q"]
+	PrintCurrent()
+}
+SimpleLoopE(){
+	global
+	operation := ["通用", "E", 100, 100, "e"]
+	PrintCurrent()
+}
+SimpleLoopS(){
+	global
+	operation := ["通用", "Shift", 100, 100, "{LShift}"]
+	PrintCurrent()
+}
+SimpleLoopV(){
+	global
+	operation := ["通用", "XButton1", 100, 100, "{XButton1}"]
+	PrintCurrent()
+}
+MaoMei(){
+	global
+	operation := ["毛妹", "盾+大招", 100, 100, "{LShift}", 100, "q"]
+	PrintCurrent()
+}
+AnNa(){
+	global
+	operation := ["安娜", "睡针药瓶", 100, 100, "{LShift}", 300, "e"]
+	PrintCurrent()
+}
+MoYi(){
+	global
+	operation := ["莫伊拉", "无限球", 100, 100, "e", 100, "{RButton}"]
+	PrintCurrent()
+}
+
+
+; ------------------------------------------------------------------------------------------------------------------
+; ------------------ 实际执行与执行开关
+; ------------------------------------------------------------------------------------------------------------------
 
 ExecuteOperation(){ ; 执行一次操作命令，把数组里的按键按照间隔全部按一遍 ; 这个傻逼语言，把我逼到这个份上，也是绝了
 	global
@@ -81,9 +132,10 @@ ToggleTimer(){ ; 开关无限循环连点器
 	global
 	gap := operation[3]
 	Toggle := !Toggle
+	ToolTip
 	
 	If Toggle
-		SetTimer , TheLoop2 , %gap% ; This is 200 ms
+		SetTimer , TheLoop2 , %gap%
 	Else
 		SetTimer , TheLoop2 , Off
 	Return

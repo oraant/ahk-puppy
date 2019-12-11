@@ -49,10 +49,21 @@ test_declare_variable()
 ; --------------------------------------------------------------------------------------
 
 #IfWinActive, ahk_exe Overwatch.exe
-	F4::ChangeGameFunc() ; 选择要循环执行的操作
-	R::ToggleTimer() ; 开关无限循环连点器
+	^Q::SimpleLoopQ()
+	^E::SimpleLoopE()
+	^V::SimpleLoopV()
+	^LShift::SimpleLoopS()
+	
+	^1::MaoMei()
+	^2::MoYi()
+	^3::AnNa()
+	
+	^Tab::ChangeGameFunc() ; 选择要循环执行的操作
+	XButton2::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
 
 ; --------------------------------------------------------------------------------------
 ; ------- 测试相关区域
 ; --------------------------------------------------------------------------------------
+
+	;T::ExecuteTest() ; 开关无限循环连点器
