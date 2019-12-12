@@ -1,11 +1,13 @@
 ﻿#Include system.ahk
 #Include work.ahk
 #Include overwatch.ahk
+#Include external.ahk
 #Include test.ahk
 
 system_declare_variable()
 overwatch_declare_variable()
 work_declare_variable()
+external_declare_variable()
 test_declare_variable()
 
 ; --------------------------------------------------------------------------------------
@@ -61,6 +63,12 @@ test_declare_variable()
 	^Tab::ChangeGameFunc() ; 选择要循环执行的操作
 	XButton2::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
+
+; --------------------------------------------------------------------------------------
+; ------- 执行外部脚本
+; --------------------------------------------------------------------------------------
+
+	F4::ToggleProxy()
 
 ; --------------------------------------------------------------------------------------
 ; ------- 测试相关区域
