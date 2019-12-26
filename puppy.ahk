@@ -42,6 +42,10 @@ test_declare_variable()
 ; --------------------------------------------------------------------------------------
 
 #IfWinActive, ahk_exe explorer.exe
+	NumpadMult::file_append_suffix_tag_Mult()
+	NumpadDiv::file_append_suffix_tag_Div()
+	NumpadAdd::file_append_suffix_tag_Add()
+	NumpadSub::file_append_suffix_tag_Sub()
 	NumpadDot::file_append_suffix_tag_Dot()
 	Numpad0::file_append_suffix_tag_0()
 	Numpad1::file_append_suffix_tag_1()
