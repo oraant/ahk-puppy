@@ -1,4 +1,4 @@
-﻿; 注意！添加完新方法后，更改最大值
+﻿	; 注意！添加完新方法后，更改最大值
 ; 之所以这么麻烦，是因为AHK的很多文档都是在扯蛋，官网关于对象和数组的例子都是不能用的。
 ; 甚至A:=[1,2,3]之类的数组，用A[0]去读都读不到数！！
 ; "onew"能识别成number，你说气不气人。
@@ -51,6 +51,22 @@ ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 }
 
 
+SimpleLoopL(){
+	global
+	operation := ["通用", "LButton", 100, 100, "{LButton}"]
+	PrintCurrent()
+}
+SimpleLoopR(){
+	global
+	operation := ["通用", "RButton", 100, 100, "{RButton}"]
+	PrintCurrent()
+}
+SimpleLoopM(){
+	global
+	operation := ["通用", "MButton", 100, 100, "{MButton}"]
+	PrintCurrent()
+}
+
 SimpleLoopQ(){
 	global
 	operation := ["通用", "Q", 100, 100, "q"]
@@ -71,6 +87,7 @@ SimpleLoopV(){
 	operation := ["通用", "XButton1", 100, 100, "{XButton1}"]
 	PrintCurrent()
 }
+
 MaoMei(){
 	global
 	operation := ["毛妹", "盾+大招", 100, 100, "{LShift}", 100, "q"]

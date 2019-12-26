@@ -37,7 +37,6 @@ test_declare_variable()
 	NumpadUp::WheelUp
 	NumpadDown::WheelDown
 
-
 ; --------------------------------------------------------------------------------------
 ; ------- 工作相关区域
 ; --------------------------------------------------------------------------------------
@@ -56,6 +55,10 @@ test_declare_variable()
 ; --------------------------------------------------------------------------------------
 
 #IfWinActive, ahk_exe Overwatch.exe
+	^LButton::SimpleLoopL()
+	^RButton::SimpleLoopR()
+	^MButton::SimpleLoopM()
+	
 	^Q::SimpleLoopQ()
 	^E::SimpleLoopE()
 	^V::SimpleLoopV()
