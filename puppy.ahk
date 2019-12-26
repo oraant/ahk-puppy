@@ -90,6 +90,14 @@ test_declare_variable()
 	XButton2::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
 
+#IfWinActive, ahk_class UnityWndClass
+	^LButton::SimpleLoopL()
+	^RButton::SimpleLoopR()
+	^MButton::SimpleLoopM()
+	XButton1::m ; 切换地图开关
+	XButton2::ToggleTimer() ; 开关无限循环连点器
+#IfWinActive
+
 ; --------------------------------------------------------------------------------------
 ; ------- 执行外部脚本
 ; --------------------------------------------------------------------------------------
