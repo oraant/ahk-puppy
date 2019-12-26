@@ -11,7 +11,7 @@ external_declare_variable()
 test_declare_variable()
 
 ; --------------------------------------------------------------------------------------
-; ------- 系统相关区域
+; ------- 系统全局区域
 ; --------------------------------------------------------------------------------------
 
 	; 切换Suspend热键功能，因为有时候Win+V键、有道的双击Ctrl划词，都会和AHK冲突
@@ -36,6 +36,24 @@ test_declare_variable()
 	NumpadClear::MButton
 	NumpadUp::WheelUp
 	NumpadDown::WheelDown
+
+; --------------------------------------------------------------------------------------
+; ------- 系统局部区域
+; --------------------------------------------------------------------------------------
+
+#IfWinActive, ahk_exe explorer.exe
+	NumpadDot::file_append_suffix_tag_Dot()
+	Numpad0::file_append_suffix_tag_0()
+	Numpad1::file_append_suffix_tag_1()
+	Numpad2::file_append_suffix_tag_2()
+	Numpad3::file_append_suffix_tag_3()
+	Numpad4::file_append_suffix_tag_4()
+	Numpad5::file_append_suffix_tag_5()
+	Numpad6::file_append_suffix_tag_6()
+	Numpad7::file_append_suffix_tag_7()
+	Numpad8::file_append_suffix_tag_8()
+	Numpad9::file_append_suffix_tag_9()
+#IfWinActive
 
 ; --------------------------------------------------------------------------------------
 ; ------- 工作相关区域
