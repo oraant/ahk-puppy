@@ -1,10 +1,12 @@
 ﻿#Include system.ahk
+#Include tc.ahk
 #Include work.ahk
 #Include overwatch.ahk
 #Include external.ahk
 #Include test.ahk
 
 system_declare_variable()
+tc_declare_variable()
 overwatch_declare_variable()
 work_declare_variable()
 external_declare_variable()
@@ -18,12 +20,14 @@ test_declare_variable()
 	F6::Suspend
 
 	; 切换大小写和Control键
-	Control::Capslock
+	~Control::Capslock ; 这里用~保留Ctrl的功能，是为了给Win+V的粘贴功能保留余地（至于动态开关映射之类的，AHK不支持）
 	Capslock::Control
 
 	; 用Ctrl+鼠标功能键来切换屏幕
-	^XButton1:: #^Left
-	^XButton2:: #^Right
+	#IfWinNotActive ahk_exe Warframe.x64.exe
+		^XButton1:: #^Left
+		^XButton2:: #^Right
+	#IfWinNotActive
 
 	; 暗影精灵4Pro的按键修改
 	RCtrl::AppsKey
@@ -38,10 +42,10 @@ test_declare_variable()
 	NumpadDown::WheelDown
 
 ; --------------------------------------------------------------------------------------
-; ------- 系统局部区域
+; ------- Total Commander 相关区域
 ; --------------------------------------------------------------------------------------
 
-#IfWinActive, ahk_exe explorer.exe
+#IfWinActive, ahk_class TTOTAL_CMD
 	NumpadMult::file_append_suffix_tag_Mult()
 	NumpadDiv::file_append_suffix_tag_Div()
 	NumpadAdd::file_append_suffix_tag_Add()
@@ -68,8 +72,8 @@ test_declare_variable()
 #IfWinActive
 
 #IfWinActive, ahk_exe PdShell16.exe
-	XButton1::FormatAngleLine() ; 用在PowerDesigner中，将某一关系的线段改为自由折角线（自由拉伸，新建实体不会导致重新排版）
-	XButton2::FormatRoundLine() ; 用在PowerDesigner中，将某一关系的线段改为被动圆角线（自由拉伸，但新建实体会导致重新排版）
+	XButton1::TempFunc1() ; 临时写的脚本1
+	XButton2::TempFunc2() ; 临时写的脚本2
 #IfWinActive
 
 ; --------------------------------------------------------------------------------------
@@ -94,7 +98,7 @@ test_declare_variable()
 	XButton2::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
 
-#IfWinActive, ahk_class UnityWndClass
+#IfWinActive, ahk_class UnityWndClass ; AI里
 	^LButton::SimpleLoopL()
 	^RButton::SimpleLoopR()
 	^MButton::SimpleLoopM()
@@ -102,14 +106,23 @@ test_declare_variable()
 	XButton2::ToggleTimer() ; 开关无限循环连点器
 #IfWinActive
 
+#IfWinActive, ahk_exe ApplicationFrameHost.exe ; 地平线
+	Capslock::Enter
+#IfWinActive
+
+#IfWinActive ahk_exe Warframe.x64.exe
+	F1::Send, zexoANT123
+	F2::Send, |{Space 100}
+#IfWinActive
+
 ; --------------------------------------------------------------------------------------
 ; ------- 执行外部脚本
 ; --------------------------------------------------------------------------------------
 
-	F4::ToggleProxy()
+	F7::ToggleProxy()
 
 ; --------------------------------------------------------------------------------------
 ; ------- 测试相关区域
 ; --------------------------------------------------------------------------------------
 
-	;`::ExecuteTest() ; 开关无限循环连点器123456789087651234567890876512345678908765123456789087651234567890876512345678908765123456789087651234567890876512345678908765
+	!`::ExecuteTest() ; 执行测试代码

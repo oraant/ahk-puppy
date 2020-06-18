@@ -17,6 +17,6 @@ def set_key(name, value):#修改键值
 
 #启用代理
 set_key('ProxyEnable', 1) #启用
-set_key('ProxyServer', u'127.0.0.1:6666') #代理IP及端口
+# set_key('ProxyServer', u'127.0.0.1:7890') #代理IP及端口
 internet_set_option(0, INTERNET_OPTION_REFRESH, 0, 0)
 internet_set_option(0,INTERNET_OPTION_SETTINGS_CHANGED, 0, 0)

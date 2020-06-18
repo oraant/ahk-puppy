@@ -1,4 +1,4 @@
-﻿	; 注意！添加完新方法后，更改最大值
+﻿; 注意！添加完新方法后，更改最大值
 ; 之所以这么麻烦，是因为AHK的很多文档都是在扯蛋，官网关于对象和数组的例子都是不能用的。
 ; 甚至A:=[1,2,3]之类的数组，用A[0]去读都读不到数！！
 ; "onew"能识别成number，你说气不气人。
@@ -7,7 +7,7 @@
 overwatch_declare_variable()
 {
 	global 
-	game_func_max := 6 ; 功能编号的最大值
+	game_func_max := 3 ; 功能编号的最大值
 	game_func_cur := 0 ; 当前快捷键想要执行的功能编号
 }
 
@@ -32,19 +32,13 @@ ChangeGameFunc(){ ; 切换功能编号，方便他人直接调用
 	Switch game_func_cur
 	{
 		Case 1:
-			operation := ["通用英雄 Q", "持续大招", 100, 200, "q"]
+			operation := ["通用英雄", "持续按7", 4500, 100, "7"]
 		Case 2:
-			operation := ["通用英雄 S", "持续移动", 100, 200, "{LShift}"]
+			operation := ["通用英雄", "持续按8", 4000, 100, "8"]
 		Case 3:
-			operation := ["通用英雄 E", "持续技能", 100, 200, "e"]
-		Case 4:
-			operation := ["莫伊拉", "无限球", 100, 100, "e", 100, "{RButton}"]
-		Case 5:
-			operation := ["毛妹", "盾+大招", 100, 100, "{LShift}", 100, "q"]
-		Case 6:
-			operation := ["安娜", "睡针药瓶", 100, 100, "{LShift}", 200, "e"]
+			operation := ["通用英雄", "持续按9", 4000, 100, "9"]
 		Default:
-			operation := ["英雄名称", "效果描述", 重复间隔, 按键间隔, "按键"]
+			operation := ["英雄名称", "效果描述", 重复间隔, 按键间隔, "按键", 按键间隔, "按键", 按键间隔, "按键"]
 	}
 	
 	PrintCurrent()

@@ -11,36 +11,43 @@ SeleteColumns() ; 用在 pycharm 或 webstorm 中，折叠内容后批量选择�
 		Sleep, 500
 }
 
-FormatAngleLine() ; 用在PowerDesigner中，将某一关系的线段改为自由折角线（自由拉伸，新建实体不会导致重新排版）
+TempFunc1() ; 用在PowerDesigner中，选择自增列
 {
-	Send ^t
-	Sleep, 500
-	Send {Tab}
-	Sleep, 100
-	Send {Tab}
-	Sleep, 100
-	Send {Tab}
-	Sleep, 100
-	Send {Home}
-	Sleep, 100
-	Send {Enter}
+	Loop, 0 ; 改为0既可封印此循环
+	{
+		Click
+		Sleep, 100
+		Send, _
+		Sleep, 100
+	}
 }
 
-FormatRoundLine() ; 用在PowerDesigner中，将某一关系的线段改为被动圆角线（自由拉伸，但新建实体会导致重新排版）
+TempFunc2() ; 用在PowerDesigner中，将某一表中，将当前列复制到下一列，然后跳转到下一行。
 {
-	Send ^t
-	Sleep, 500
-	Send {Tab}
-	Sleep, 100
-	Send {Tab}
-	Sleep, 100
-	Send {Tab}
-	Sleep, 100
-	Send {Home}
-	Sleep, 100
-	Send {Down}
-	Sleep, 100
-	Send {Down}
-	Sleep, 100
-	Send {Enter}
+	Loop, 0 ; 改为0既可封印此循环
+	{
+		; 复制并移动至目标列
+		Send ^c
+		Sleep, 30
+		Send {Tab 2}
+		Sleep, 30
+		
+		
+		; 执行粘贴操作（含前缀、后缀）
+		Send {}fk_
+		Sleep, 30
+		
+		Send ^v
+		Sleep, 30
+		
+		Send {}
+		Sleep, 30
+		
+		
+		; 移动回原列，并切换到下一行
+		Send +{Tab 2}
+		Sleep, 30
+		Send {Down}
+		Sleep, 30
+	}
 }
