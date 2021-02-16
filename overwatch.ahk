@@ -81,6 +81,11 @@ SimpleLoopV(){
 	operation := ["通用", "XButton1", 100, 100, "{XButton1}"]
 	PrintCurrent()
 }
+SimpleLoopX(){
+	global
+	operation := ["通用", "X", 500, 100, "x"]
+	PrintCurrent()
+}
 
 MaoMei(){
 	global
@@ -98,6 +103,14 @@ MoYi(){
 	PrintCurrent()
 }
 
+; --- 其他变种 -----------------------------------------------
+
+AutoLoopL(){
+	global
+	operation := ["通用", "LButton", 999, 1, "{LButton}"]
+	PrintCurrent()
+	ToggleTimer()
+}
 
 ; ------------------------------------------------------------------------------------------------------------------
 ; ------------------ 实际执行与执行开关
@@ -145,10 +158,16 @@ ToggleTimer(){ ; 开关无限循环连点器
 	Toggle := !Toggle
 	ToolTip
 	
-	If Toggle
+	If(Toggle)
+	{
 		SetTimer , TheLoop2 , %gap%
+		SoundBeep, 800, 300
+	}
 	Else
+	{
 		SetTimer , TheLoop2 , Off
+		SoundBeep, 400, 300
+	}
 	Return
 
 	TheLoop2:
