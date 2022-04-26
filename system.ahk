@@ -2,8 +2,8 @@
 {
 	global
 	
-	apps_lock := true
-	rwin_lock := true
+	apps_lock := false ; 一般是应用在软件内部，默认关闭，按了才开
+	rwin_lock := true ; 一般是应用在系统层面，默认打开，按了才关
 	rctl_lock := true
 	ralt_lock := true
 	rsft_lock := true
@@ -139,8 +139,9 @@ ToggleTaskBar(){ ; 切换是否自动隐藏任务栏
 
 JumpScare(){ ; 突然调大声音吓你一跳
 	SoundGet, master_volume
-	SoundSet, 10
+	SoundSet, 80
 	SoundBeep, 800, 200
-	Sleep, 300
-	SoundSet, %master_volume%
+	Sleep, 600
+	SoundSet, 2
+	; SoundSet, %master_volume%
 }

@@ -1,0 +1,1 @@
+start "" "D:\Program Portable\AHK Programme\puppy.ahk"
